@@ -1,0 +1,17 @@
+version: '3.7'
+
+services:
+  api:
+    build:
+      context: ./api
+    container_name: api
+    command: denon run --allow-env --allow-net src/main.ts
+    init: true
+    environment:
+      - PORT=3001
+      - URL=http://localhost
+      - MONGO_URL=mongodb://api_mongo:27017
+      - DB_NAME=todo
+      - API_VERSION=v1
+    volumes:
+      - ./api:/app
